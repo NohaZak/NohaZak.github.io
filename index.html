@@ -7,119 +7,144 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
-    --bg:#0d0f14;--surface:#161a24;--card:#1e2330;--border:#2a3044;
-    --accent:#6c8fff;--accent2:#a78bfa;--text:#e2e8f0;--muted:#8892a4;
-    --green:#34d399;--tag-bg:#1e2a45;
+    --bg:#0a0b10;--surface:#111318;--card:#181b24;--border:#252a3a;
+    --accent:#ff6b4a;--accent2:#ffa64d;--accent3:#ffcc33;
+    --text:#e8eaf0;--muted:#7a8399;
+    --tag-bg:#1a1d28;--green:#34d399;
   }
   body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
   a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
+  a:hover{color:var(--accent2);text-decoration:none}
 
-  nav{position:fixed;top:0;width:100%;background:rgba(13,15,20,.92);backdrop-filter:blur(12px);
+  nav{position:fixed;top:0;width:100%;background:rgba(10,11,16,.94);backdrop-filter:blur(14px);
     border-bottom:1px solid var(--border);z-index:100;padding:0 2rem}
   .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-  .nav-logo{font-weight:700;font-size:1.05rem;color:var(--text)}
+  .nav-logo{font-weight:800;font-size:1.1rem;color:var(--text)}
   .nav-logo span{color:var(--accent)}
   .nav-links{display:flex;gap:1.8rem;list-style:none}
-  .nav-links a{color:var(--muted);font-size:.9rem;transition:color .2s}
-  .nav-links a:hover{color:var(--text);text-decoration:none}
+  .nav-links a{color:var(--muted);font-size:.88rem;transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;
+    background:var(--accent);transition:width .3s}
+  .nav-links a:hover::after{width:100%}
 
   section{padding:5rem 2rem}
   .container{max-width:1100px;margin:0 auto}
 
+  /* HERO */
   #hero{padding-top:8rem;min-height:100vh;display:flex;align-items:center}
-  .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-  .hero-badge{display:inline-block;background:var(--tag-bg);color:var(--accent);
-    font-size:.78rem;padding:.3rem .8rem;border-radius:99px;border:1px solid var(--accent);
-    margin-bottom:1rem;letter-spacing:.04em}
-  .hero-title{font-size:3rem;font-weight:800;line-height:1.15;margin-bottom:1rem}
-  .hero-title .hl{background:linear-gradient(90deg,var(--accent),var(--accent2));
+  .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+  .hero-eyebrow{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1rem;font-weight:700}
+  .hero-title{font-size:3.2rem;font-weight:900;line-height:1.1;margin-bottom:1.2rem}
+  .hero-title .hl{background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
     -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .hero-sub{color:var(--muted);font-size:1.05rem;margin-bottom:2rem;max-width:480px}
+  .hero-sub{color:var(--muted);font-size:1rem;margin-bottom:.8rem;max-width:500px;line-height:1.65}
+  .hero-proof{color:var(--muted);font-size:.88rem;margin-bottom:2rem;max-width:500px;
+    border-left:3px solid var(--accent);padding-left:12px;line-height:1.55}
+  .hero-proof strong{color:var(--text)}
   .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-  .btn{padding:.65rem 1.4rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;display:inline-block}
+  .btn{padding:.65rem 1.4rem;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;border:none;
+    transition:all .25s;display:inline-block}
   .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:#5577ee;text-decoration:none}
-  .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
-  .btn-outline:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
 
-  .hero-stats{display:flex;flex-direction:column;gap:1.2rem}
-  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem}
-  .stat-num{font-size:2rem;font-weight:800;color:var(--accent)}
-  .stat-label{color:var(--muted);font-size:.85rem;margin-top:.2rem}
+  .hero-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .metric{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;
+    position:relative;overflow:hidden}
+  .metric::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .metric-num{font-size:1.8rem;font-weight:900;color:var(--accent)}
+  .metric-label{color:var(--muted);font-size:.82rem;margin-top:.2rem;line-height:1.4}
 
-  .sec-label{color:var(--accent);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-  .sec-title{font-size:1.9rem;font-weight:700;margin-bottom:.5rem}
-  .sec-sub{color:var(--muted);margin-bottom:2.5rem;max-width:560px}
+  /* SECTION */
+  .sec-label{color:var(--accent);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    margin-bottom:.5rem;font-weight:700}
+  .sec-title{font-size:1.8rem;font-weight:800;margin-bottom:.4rem}
+  .sec-sub{color:var(--muted);margin-bottom:2.5rem;max-width:540px;font-size:.95rem}
 
-  #skills{background:var(--surface)}
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
-  .skill-group{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem}
-  .skill-group h4{font-size:.9rem;font-weight:600;margin-bottom:.8rem;color:var(--accent2)}
-  .tags{display:flex;flex-wrap:wrap;gap:.5rem}
-  .tag{background:var(--tag-bg);color:var(--muted);font-size:.78rem;padding:.25rem .65rem;border-radius:6px;border:1px solid var(--border)}
-  .tag-domain{background:transparent;color:var(--accent2);border-color:var(--accent2);font-size:.72rem}
+  /* WHAT I DO */
+  #approach{background:var(--surface)}
+  .approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .approach-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:1.6rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+  .approach-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .approach-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s}
+  .approach-card:hover::before{opacity:1}
+  .approach-num{font-size:2.5rem;font-weight:900;color:var(--border);margin-bottom:.4rem}
+  .approach-title{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+  .approach-desc{font-size:.85rem;color:var(--muted);line-height:1.55}
 
-  .proj-subsection{margin-bottom:3rem}
-  .proj-subsection-title{font-size:1rem;font-weight:700;color:var(--accent2);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.2rem;
-    padding-bottom:.5rem;border-bottom:1px solid var(--border)}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
-  .proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
-    padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;transition:border-color .2s,transform .2s}
-  .proj-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-  .proj-icon{font-size:1.6rem;margin-bottom:.2rem}
-  .proj-name{font-size:1.1rem;font-weight:700}
-  .proj-desc{color:var(--muted);font-size:.88rem;line-height:1.6}
-  .proj-problem{background:#12161f;border-left:3px solid var(--accent2);
-    padding:.7rem 1rem;border-radius:0 8px 8px 0;margin:.2rem 0}
-  .proj-problem-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent2);margin-bottom:.2rem}
-  .proj-problem-text{font-size:.83rem;color:var(--muted)}
-  .proj-highlights{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-  .proj-highlights li{font-size:.83rem;color:var(--muted);padding-left:1rem;position:relative}
-  .proj-highlights li::before{content:'→';position:absolute;left:0;color:var(--accent)}
-  .impact-badge{display:inline-block;background:#0d2014;color:var(--green);
-    font-size:.75rem;padding:.3rem .8rem;border-radius:6px;border:1px solid #1a4a2a;margin-top:.2rem}
+  /* SKILLS */
+  #skills{background:var(--bg)}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+  .skill-group{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+  .skill-group h4{font-size:.82rem;font-weight:700;margin-bottom:.6rem;color:var(--accent)}
+  .tags{display:flex;flex-wrap:wrap;gap:.4rem}
+  .tag{background:var(--tag-bg);color:var(--muted);font-size:.75rem;
+    padding:.22rem .55rem;border-radius:5px;border:1px solid var(--border);transition:border-color .2s}
+  .tag:hover{border-color:var(--accent)}
 
+  /* EXPERIENCE */
   #experience{background:var(--surface)}
-  .exp-timeline{display:flex;flex-direction:column;gap:1.6rem}
-  .exp-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.8rem;
-    border-left:3px solid var(--accent)}
-  .exp-card.specialist{border-left-color:var(--accent2)}
-  .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem;flex-wrap:wrap;gap:.5rem}
-  .exp-role{font-size:1.05rem;font-weight:700}
-  .exp-company{color:var(--accent2);font-size:.9rem;margin-top:.2rem}
-  .exp-period{color:var(--muted);font-size:.82rem;background:var(--tag-bg);padding:.25rem .7rem;border-radius:6px;white-space:nowrap}
-  .exp-bullets{list-style:none;margin-top:.8rem;display:flex;flex-direction:column;gap:.5rem}
-  .exp-bullets li{font-size:.88rem;color:var(--muted);padding-left:1.2rem;position:relative}
-  .exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
-  .promoted-badge{display:inline-block;background:#1a2a1a;color:var(--green);
-    font-size:.72rem;padding:.2rem .7rem;border-radius:99px;border:1px solid var(--green);margin-left:.6rem}
+  .timeline{position:relative;display:flex;flex-direction:column;gap:0}
+  .timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;
+    background:linear-gradient(180deg,var(--accent),var(--accent2),var(--border))}
+  .tl-item{position:relative;padding-left:52px;padding-bottom:2rem}
+  .tl-dot{position:absolute;left:13px;top:4px;width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--accent);z-index:1}
+  .tl-dot.promoted{border-color:var(--green);box-shadow:0 0 8px rgba(52,211,153,.3)}
+  .tl-dot.freelance{border-color:var(--accent2)}
+  .tl-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin-bottom:.3rem}
+  .tl-role{font-size:1rem;font-weight:700}
+  .tl-period{font-size:.78rem;color:var(--muted);background:var(--tag-bg);padding:.2rem .6rem;border-radius:5px}
+  .tl-company{font-size:.88rem;color:var(--accent);margin-bottom:.5rem}
+  .tl-tag{display:inline-block;font-size:.68rem;padding:.15rem .5rem;border-radius:4px;font-weight:700;margin-left:.5rem}
+  .tl-tag.promoted-tag{background:#0d2014;color:var(--green);border:1px solid #1a4a2a}
+  .tl-tag.freelance-tag{background:#1a1510;color:var(--accent2);border:1px solid #3a2a10}
+  .tl-tag.concurrent-tag{background:#12141e;color:var(--muted);border:1px solid var(--border)}
+  .tl-bullets{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+  .tl-bullets li{font-size:.85rem;color:var(--muted);padding-left:1rem;position:relative;line-height:1.5}
+  .tl-bullets li::before{content:'>';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .tl-sub{font-size:.9rem;font-weight:700;color:var(--text);margin:6px 0 3px}
 
-  .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+  /* IMPACT */
+  .impact-row{display:flex;gap:.6rem;margin-top:.5rem;flex-wrap:wrap}
+  .impact-chip{font-size:.72rem;padding:.25rem .7rem;border-radius:5px;font-weight:700;
+    background:#0d1a14;color:var(--green);border:1px solid #1a4a2a}
+
+  /* CERTS */
+  #certs{background:var(--bg)}
+  .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
   .cert-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
-    padding:1.4rem;display:flex;gap:1rem;align-items:flex-start}
-  .cert-icon{font-size:1.5rem;flex-shrink:0}
-  .cert-name{font-size:.92rem;font-weight:600}
-  .cert-issuer{color:var(--muted);font-size:.8rem;margin-top:.2rem}
+    padding:1.2rem;transition:border-color .3s}
+  .cert-card:hover{border-color:var(--accent)}
+  .cert-name{font-size:.9rem;font-weight:700}
+  .cert-issuer{color:var(--muted);font-size:.78rem;margin-top:.2rem}
 
+  /* CONTACT */
   #contact{text-align:center}
-  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
-    padding:3rem;max-width:600px;margin:0 auto}
-  .contact-card h3{font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
-  .contact-card p{color:var(--muted);margin-bottom:1.8rem}
-  .contact-links{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+    padding:3rem;max-width:550px;margin:0 auto;position:relative;overflow:hidden}
+  .contact-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+  .contact-card h3{font-size:1.4rem;font-weight:800;margin-bottom:.4rem}
+  .contact-card p{color:var(--muted);margin-bottom:1.6rem;font-size:.92rem}
+  .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
 
-  footer{text-align:center;padding:2rem;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border)}
+  footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border)}
 
-  .fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+  .fade-in{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
   .fade-in.visible{opacity:1;transform:none}
 
-  @media(max-width:720px){
+  @media(max-width:768px){
     .hero-inner{grid-template-columns:1fr}
-    .hero-stats{flex-direction:row;flex-wrap:wrap}
-    .stat-card{flex:1;min-width:140px}
-    .hero-title{font-size:2rem}
+    .hero-metrics{grid-template-columns:1fr 1fr}
+    .hero-title{font-size:2.2rem}
+    .approach-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -129,272 +154,263 @@
   <div class="nav-inner">
     <div class="nav-logo">Noha<span>.</span></div>
     <ul class="nav-links">
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#approach">Approach</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#certs">Certs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
       <div>
-        <div class="hero-badge">Open to Solutions Engineer Roles</div>
-        <h1 class="hero-title">Noha Zakaria<br><span class="hl">Solutions Engineer</span></h1>
-        <p class="hero-sub">I scope problems, build solutions, demo them to leadership, and roll them out at scale. Background in backend development, workflow automation, and Pega Business Architecture.</p>
+        <div class="hero-eyebrow">Solutions Engineer</div>
+        <h1 class="hero-title">I find the problem.<br>I build the fix.<br>I <span class="hl">ship it.</span></h1>
+        <p class="hero-sub">Not in theory. In production. To real stakeholders who use it the next day.</p>
+        <p class="hero-proof">At <strong>Nahdet Misr Publishing Group</strong>, I replaced a 7-person, 1-month manual process with an automated dashboard — <strong>alone, in 3 days</strong>. Then built a work estimation tool adopted by <strong>103 people across 7 teams in under a week</strong>.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="mailto:nohazeid89@gmail.com">Get in Touch</a>
-          <a class="btn btn-outline" href="https://github.com/NohaZak" target="_blank">GitHub ↗</a>
+          <a class="btn btn-primary" href="mailto:nohazeid89@gmail.com">Let's talk</a>
+          <a class="btn btn-outline" href="https://github.com/NohaZak" target="_blank">GitHub</a>
         </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-num">~40%</div>
-          <div class="stat-label">Reduction in project delivery time under my leadership</div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <div class="metric-num">40%</div>
+          <div class="metric-label">Faster project delivery under my leadership</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">103</div>
-          <div class="stat-label">Staff using tools I built and rolled out department-wide</div>
+        <div class="metric">
+          <div class="metric-num">103</div>
+          <div class="metric-label">Staff using tools I built and deployed</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">3 days</div>
-          <div class="stat-label">To replace a planned 7-person, 1-month manual process</div>
+        <div class="metric">
+          <div class="metric-num">3 days</div>
+          <div class="metric-label">To replace a 7-person month-long effort</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">4+</div>
-          <div class="stat-label">Years delivering solutions across ops, dev & architecture</div>
+        <div class="metric">
+          <div class="metric-num">4+</div>
+          <div class="metric-label">Years across ops, dev, and architecture</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container fade-in">
+    <div class="sec-label">How I work</div>
+    <h2 class="sec-title">My approach to Solutions Engineering</h2>
+    <p class="sec-sub">Every solution I've delivered follows the same pattern. It's what I do naturally.</p>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-num">01</div>
+        <div class="approach-title">Find the real problem</div>
+        <div class="approach-desc">Not the symptom someone reported. The actual bottleneck. I sit with the people doing the work and understand what's broken before touching a keyboard.</div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">02</div>
+        <div class="approach-title">Build the right-sized solution</div>
+        <div class="approach-desc">Sometimes it's a TypeScript script. Sometimes it's a full Django app. I pick the tool that fits the constraint — not the one that looks impressive on a spec sheet.</div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-num">03</div>
+        <div class="approach-title">Demo, sign off, deploy</div>
+        <div class="approach-desc">A solution nobody uses is a waste of time. I demo to leadership, get sign-off, train the team, and make sure it's adopted. That's when the work is done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container fade-in">
+    <div class="sec-label">Where I've delivered</div>
+    <h2 class="sec-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot promoted"></div>
+        <div class="tl-header">
+          <div class="tl-role">Content Operations Team Lead <span class="tl-tag promoted-tag">Promoted</span></div>
+          <div class="tl-period">2023 - Present</div>
+        </div>
+        <div class="tl-company">Nahdet Misr Publishing Group - E-learning, Cairo</div>
+        <ul class="tl-bullets">
+          <li>Reduced project delivery time from 3-5 months to 2-3 months — 40% faster</li>
+          <li>Leads a 7-person cross-functional team across 3-4 concurrent educational content projects</li>
+          <li>Designs data tracking systems, workflow automation, and performance reporting</li>
+          <li>Bridges technical and non-technical stakeholders, translating requirements into systems</li>
+          <li>Delivers executive dashboards and reporting to Department Head and senior PMs</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-role">Content Operations Specialist</div>
+          <div class="tl-period">2020 - 2023</div>
+        </div>
+        <div class="tl-company">Nahdet Misr Publishing Group - E-learning, Cairo</div>
+        <ul class="tl-bullets">
+          <li>Independently identified and solved two critical operational gaps with no brief or prior process</li>
+        </ul>
+
+        <div class="tl-sub">Cost Estimation Dashboard</div>
+        <ul class="tl-bullets">
+          <li>No process existed. Plan was 7 employees, 1 month, 30+ raw data sheets.</li>
+          <li>Cleaned 30+ sheets, designed calculation logic, automated via TypeScript (Office Scripts)</li>
+          <li>Delivered executive dashboard to Ops Manager, PMs, and Department Head</li>
+        </ul>
+        <div class="impact-row">
+          <span class="impact-chip">Delivered alone in 3 days</span>
+          <span class="impact-chip">Replaced 7-person effort</span>
+        </div>
+
+        <div class="tl-sub" style="margin-top:12px">Work Estimate Calculator</div>
+        <ul class="tl-bullets">
+          <li>No estimation system existed — blocking planning and budgets for 103 staff across 7 teams</li>
+          <li>Built task database covering ~10 types per team across 7 departments</li>
+          <li>Excel calculator with dynamic drop-downs, accessible to any employee</li>
+          <li>Demoed to all team heads, got sign-off, rolled out department-wide</li>
+        </ul>
+        <div class="impact-row">
+          <span class="impact-chip">103 users</span>
+          <span class="impact-chip">5 days from idea to rollout</span>
+          <span class="impact-chip">7 departments</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot freelance"></div>
+        <div class="tl-header">
+          <div class="tl-role">Freelance Software Developer <span class="tl-tag freelance-tag">Freelance</span></div>
+          <div class="tl-period">2025 - Present</div>
+        </div>
+        <div class="tl-company">Self-employed, Remote</div>
+
+        <div class="tl-sub">Quizify — AI-Ready Quiz Platform</div>
+        <ul class="tl-bullets">
+          <li>Full-stack Django app with secure auth, real-time scoring, and leaderboard — MVP shipped</li>
+          <li>Modular backend designed for LLM integration and adaptive quiz generation</li>
+        </ul>
+
+        <div class="tl-sub" style="margin-top:8px">Brands of Eden — Order and Inventory System</div>
+        <ul class="tl-bullets">
+          <li>Scalable order management with automated KPI dashboards for sales and stock</li>
+          <li>Rule-based chatbot (Zizi) handling customer interactions without manual intervention</li>
+          <li>Architecture designed for database migration and AI analytics</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot freelance"></div>
+        <div class="tl-header">
+          <div class="tl-role">Pega Business Architect <span class="tl-tag freelance-tag">Freelance</span></div>
+          <div class="tl-period">2021 - 2023</div>
+        </div>
+        <div class="tl-company">TechRegula, Remote <span class="tl-tag concurrent-tag">Concurrent with Nahdet Misr</span></div>
+        <ul class="tl-bullets">
+          <li>Translated business requirements into Pega application designs</li>
+          <li>Designed case lifecycles, data models, and UI layouts</li>
+          <li>Configured workflows and business rules with dev teams</li>
+          <li>Conducted UAT and validated solutions against business needs</li>
+          <li>Bridged business stakeholders and the Pega development team</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
 <section id="skills">
   <div class="container fade-in">
-    <div class="sec-label">What I bring</div>
-    <h2 class="sec-title">Core Competencies</h2>
-    <p class="sec-sub">Technical depth paired with the communication and delivery skills that make Solutions Engineering effective.</p>
+    <div class="sec-label">What I work with</div>
+    <h2 class="sec-title">Skills</h2>
     <div class="skills-grid">
       <div class="skill-group">
-        <h4>Backend & APIs</h4>
+        <h4>Solutions Engineering</h4>
         <div class="tags">
-          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">Flask</span>
-          <span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span>
+          <span class="tag">Technical Discovery</span><span class="tag">Requirements Mapping</span>
+          <span class="tag">Solution Demos</span><span class="tag">POC Delivery</span>
+          <span class="tag">Stakeholder Alignment</span><span class="tag">Process Optimization</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Frontend</h4>
+        <h4>AI and Integration</h4>
         <div class="tags">
-          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span>
-          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span>
+          <span class="tag">Prompt Engineering</span><span class="tag">AI-assisted Rapid Prototyping</span>
+          <span class="tag">LLM Integration</span><span class="tag">Chatbot Automation</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Data & Automation</h4>
+        <h4>Automation and Data</h4>
         <div class="tags">
           <span class="tag">Excel Advanced</span><span class="tag">Office Scripts</span><span class="tag">Power BI</span>
           <span class="tag">Dashboard Design</span><span class="tag">Data Cleaning</span><span class="tag">Workflow Automation</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Pega & Architecture</h4>
+        <h4>Pega Platform</h4>
         <div class="tags">
-          <span class="tag">Pega Platform</span><span class="tag">Case Lifecycle Design</span>
-          <span class="tag">Business Rules</span><span class="tag">UAT</span><span class="tag">Requirements Mapping</span>
+          <span class="tag">Case Lifecycle Design</span><span class="tag">Business Rules</span>
+          <span class="tag">Data Modeling</span><span class="tag">UAT</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>AI & Integration</h4>
+        <h4>Backend</h4>
         <div class="tags">
-          <span class="tag">LLM Integration</span><span class="tag">Prompt Engineering</span>
-          <span class="tag">Chatbot Automation</span><span class="tag">AI-assisted Dev</span>
+          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">Flask</span>
+          <span class="tag">REST APIs</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4>Solutions Engineering</h4>
+        <h4>Frontend and DevOps</h4>
         <div class="tags">
-          <span class="tag">Technical Discovery</span><span class="tag">Demo & Sign-off</span>
-          <span class="tag">Stakeholder Alignment</span><span class="tag">Process Optimization</span><span class="tag">Agile</span>
+          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span>
+          <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">AWS</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="projects">
-  <div class="container fade-in">
-    <div class="sec-label">What I've built</div>
-    <h2 class="sec-title">Solutions & Projects</h2>
-    <p class="sec-sub">Operational solutions I delivered in the field, and technical projects I built independently.</p>
-
-    <div class="proj-subsection">
-      <div class="proj-subsection-title">Operational Solutions — Content Operations</div>
-      <div class="projects-grid">
-
-        <div class="proj-card">
-          <div class="proj-icon">📊</div>
-          <div class="proj-name">Cost Estimation Dashboard</div>
-          <div class="proj-problem">
-            <div class="proj-problem-label">Problem</div>
-            <div class="proj-problem-text">Manager's plan: 7 employees, 1 month of manual work across 30+ raw data sheets. No estimation process existed.</div>
-          </div>
-          <ul class="proj-highlights">
-            <li>Cleaned, validated, and unified 30+ sheets of raw production data</li>
-            <li>Designed custom logic to quantify production parameters</li>
-            <li>Built TypeScript (Office Scripts) automation for cost calculations</li>
-            <li>Delivered executive dashboard to Ops Manager, PMs, and Department Head</li>
-          </ul>
-          <div class="impact-badge">⚡ Delivered alone in 3 days</div>
-          <div class="tags" style="margin-top:.4rem"><span class="tag tag-domain">Data Engineering</span><span class="tag tag-domain">Automation</span><span class="tag">TypeScript</span><span class="tag">Excel</span></div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-icon">⚖️</div>
-          <div class="proj-name">Work Estimate Calculator</div>
-          <div class="proj-problem">
-            <div class="proj-problem-label">Problem</div>
-            <div class="proj-problem-text">No task estimation process existed — blocking project planning, budget proposals, and efficiency tracking for 103 staff across 7 teams.</div>
-          </div>
-          <ul class="proj-highlights">
-            <li>Designed a data-driven alternative to the proposed manual approach</li>
-            <li>Built task database covering ~10 task types per team across 7 departments</li>
-            <li>Parameterized by word count, video duration, page count, and complexity</li>
-            <li>Excel calculator with dynamic drop-downs — accessible to any employee</li>
-            <li>Demoed to all team heads, got sign-off, rolled out department-wide</li>
-          </ul>
-          <div class="impact-badge">⚡ 103 users · 5 days from idea to rollout</div>
-          <div class="tags" style="margin-top:.4rem"><span class="tag tag-domain">Tool Design</span><span class="tag tag-domain">Stakeholder Delivery</span><span class="tag">Excel</span><span class="tag">Database Design</span></div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="proj-subsection">
-      <div class="proj-subsection-title">Technical Projects</div>
-      <div class="projects-grid">
-
-        <div class="proj-card">
-          <div class="proj-icon">📝</div>
-          <div class="proj-name">Quizify — AI-Ready Quiz Platform</div>
-          <div class="proj-desc">MVP shipped. Full-stack quiz platform with modular Django backend designed for LLM integration. Next milestone: adaptive quiz generation.</div>
-          <ul class="proj-highlights">
-            <li>Secure auth, real-time scoring, leaderboard — fully functional</li>
-            <li>Architecture ready for LLM integration and adaptive learning</li>
-            <li>End-to-end independent delivery from scope to shipped MVP</li>
-          </ul>
-          <div class="tags"><span class="tag tag-domain">Full-Stack</span><span class="tag">Django</span><span class="tag">Python</span><span class="tag">SQLite</span></div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-icon">🛒</div>
-          <div class="proj-name">Brands of Eden</div>
-          <div class="proj-desc">End-to-end order management and inventory system. Built the right solution for the constraint — scalable from Sheets to a full DB backend.</div>
-          <ul class="proj-highlights">
-            <li>Automated dashboards for sales & inventory tracking</li>
-            <li>Rule-based chatbot (Zizi) for customer ops automation</li>
-            <li>Architecture ready for AI analytics upgrade</li>
-          </ul>
-          <div class="tags"><span class="tag tag-domain">Automation</span><span class="tag tag-domain">E-Commerce</span><span class="tag">Google Sheets</span><span class="tag">Office Scripts</span></div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="container fade-in">
-    <div class="sec-label">Where I've worked</div>
-    <h2 class="sec-title">Experience</h2>
-    <div class="exp-timeline">
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Content Operations Team Lead <span class="promoted-badge">↑ Promoted</span></div>
-            <div class="exp-company">E-learning Digital Department · Cairo, Egypt</div>
-          </div>
-          <div class="exp-period">2023 – Present</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Reduced average project delivery time from 3–5 months to 2–3 months (~40% improvement)</li>
-          <li>Leads a 7-person team across 3–4 concurrent projects — periodic, monthly, and quarterly</li>
-          <li>Manages data tracking, workflow design, and performance reporting across all active projects</li>
-          <li>Mentors team members across content operations, QC, and cross-functional workflows</li>
-          <li>Delivers executive-level reporting to the Department Head and senior project managers</li>
-        </ul>
-      </div>
-
-      <div class="exp-card specialist">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Content Operations Specialist</div>
-            <div class="exp-company">E-learning Digital Department · Cairo, Egypt</div>
-          </div>
-          <div class="exp-period">2020 – 2023</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Independently identified and solved two critical operational gaps with no brief or prior process in place</li>
-          <li>Built the Cost Estimation Dashboard — replaced a planned 7-person, 1-month effort; delivered alone in 3 days</li>
-          <li>Built the Work Estimate Calculator — rolled out to 103 staff across 7 teams within 5 days of concept</li>
-          <li>All solutions were self-initiated, designed, demoed to leadership, and deployed independently</li>
-        </ul>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Pega Business Architect</div>
-            <div class="exp-company">TechRegula · Freelance · Remote</div>
-          </div>
-          <div class="exp-period">2021 – 2023</div>
-        </div>
-        <ul class="exp-bullets">
-          <li>Analyzed business processes and translated requirements into Pega application designs</li>
-          <li>Designed case lifecycles, data models, and UI layouts within the Pega platform</li>
-          <li>Configured workflows and business rules in collaboration with developers and stakeholders</li>
-          <li>Conducted UAT and validated that delivered solutions met business needs</li>
-          <li>Bridged business stakeholders and the technical Pega development team throughout delivery</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+<!-- CERTS -->
 <section id="certs">
   <div class="container fade-in">
     <div class="sec-label">Credentials</div>
-    <h2 class="sec-title">Education & Certifications</h2>
+    <h2 class="sec-title">Education and Certifications</h2>
     <div class="certs-grid">
       <div class="cert-card">
-        <div class="cert-icon">🤖</div>
-        <div><div class="cert-name">AI Mastery Certificate Program</div><div class="cert-issuer">Coursiv · 2026</div></div>
+        <div class="cert-name">AI Mastery Certificate Program</div>
+        <div class="cert-issuer">Coursiv - 2026</div>
       </div>
       <div class="cert-card">
-        <div class="cert-icon">💻</div>
-        <div><div class="cert-name">ALX Software Engineering Certificate</div><div class="cert-issuer">Holberton School · 2025</div></div>
+        <div class="cert-name">ALX Software Engineering Certificate</div>
+        <div class="cert-issuer">Holberton School - 2025</div>
       </div>
       <div class="cert-card">
-        <div class="cert-icon">📊</div>
-        <div><div class="cert-name">ALX Professional Foundations — Data Science</div><div class="cert-issuer">ALX · In Progress</div></div>
+        <div class="cert-name">ALX Professional Foundations - Data Science</div>
+        <div class="cert-issuer">ALX - In Progress</div>
       </div>
       <div class="cert-card">
-        <div class="cert-icon">🔵</div>
-        <div><div class="cert-name">Certified Pega Business Architect</div><div class="cert-issuer">Pega Academy · 2020</div></div>
+        <div class="cert-name">Certified Pega Business Architect</div>
+        <div class="cert-issuer">Pega Academy - 2020</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="container fade-in">
     <div class="contact-card">
-      <h3>Let's work together</h3>
-      <p>Open to Solutions Engineer roles — remote, hybrid, or on-site. Available for technical discovery calls and demo sessions.</p>
+      <h3>Let's build something together</h3>
+      <p>Open to Solutions Engineer roles. Available for technical discovery calls, demos, and proof-of-concept sessions.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:nohazeid89@gmail.com">nohazeid89@gmail.com</a>
         <a class="btn btn-outline" href="https://github.com/NohaZak" target="_blank">GitHub</a>
@@ -404,7 +420,7 @@
 </section>
 
 <footer>
-  Built by Noha Zakaria · Solutions Engineer · Cairo, Egypt
+  Noha Zakaria - Solutions Engineer - Cairo, Egypt
 </footer>
 
 <script>
